@@ -1,0 +1,73 @@
+//**********PROCEDURE**********//
+PROCEDURE dot_product(v1, v2: ARRAY_OF REAL[n]; VAR ps: REAL);
+VAR
+  i: INTEGER;
+BEGIN
+  ps := 0;
+  FOR i := 1 TO n DO
+    ps := ps + v1[i] * v2[i];
+  END_FOR;
+END;
+
+ALGORITHM check_orthogonal
+VAR
+  n, i: INTEGER;
+  v1, v2: ARRAY_OF REAL[100];
+  ps: INTEGER;
+BEGIN
+  WRITE("Entrez le nombre de paires de vecteurs");
+  READ(n);
+  
+  FOR i := 1 TO n DO
+    WRITE("Entrez les éléments du premier vecteur");
+    READ(v1[1], v1[2], ..., v1[n]);
+    WRITE("Entrez les éléments du second vecteur");
+    READ(v2[1], v2[2], ..., v2[n]);
+    
+    dot_product(v1, v2, ps);
+    
+    IF ps = 0 THEN
+      WRITE("Les vecteurs V1 et V2 sont orthogonaux");
+    ELSE
+      WRITE("Les vecteurs V1 et V2 ne sont pas orthogonaux");
+    END_IF;
+  END_FOR;
+END;
+
+//**********FONCTION**********//
+FUNCTION dot_product(v1, v2: ARRAY_OF REAL[n]): REAL;
+VAR
+  i: INTEGER;
+  ps: REAL;
+BEGIN
+  ps := 0;
+  FOR i := 1 TO n DO
+    ps := ps + v1[i] * v2[i];
+  END_FOR;
+  RETURN ps;
+END;
+
+ALGORITHM check_orthogonal
+VAR
+  n, i: INTEGER;
+  v1, v2: ARRAY_OF REAL[100];
+  ps: REAL;
+BEGIN
+  WRITE("Entrez le nombre de paires de vecteurs");
+  READ(n);
+  
+  FOR i := 1 TO n DO
+    WRITE("Entrez le premier vecteur");
+    READ(v1[1], v1[2], ..., v1[n]);
+    WRITE("Entrez le second vecteur");
+    READ(v2[1], v2[2], ..., v2[n]);
+    
+    ps := dot_product(v1, v2);
+    
+    IF ps = 0 THEN
+      WRITE("Les vecteurs V1 et V2 sont orthogonaux");
+    ELSE
+      WRITE("Les vecteurs V1 et V2 ne sont pas orthogonaux");
+    END_IF;
+  END_FOR;
+END;

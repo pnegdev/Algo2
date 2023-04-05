@@ -1,0 +1,37 @@
+ALGORITHM FirstAlgo
+VAR
+    Ens1 : ARRAY_OF INTEGER[5];
+    Ens2 : ARRAY_OF INTEGER[5];
+    g,m : INTEGER := 0;
+    sum : INTEGER := 0;
+    double : BOOLEAN;
+BEGIN
+    Ens1 := [3, 1, 7, 9];
+    Ens2 := [2, 4, 1, 9, 3];
+
+    FOR g FROM 0 TO Ens1.length DO 
+        double := false;
+        FOR m FROM 0 TO Ens2.length-1 DO
+            IF Ens1[g] = Ens2[m] THEN 
+                double := true;
+            END_IF
+        END_FOR
+        IF NOT double THEN 
+            sum := sum + Ens1[g];
+        END_IF
+    END_FOR
+
+    FOR g FROM 0 TO Ens2.length DO 
+        double := false;
+        FOR m FROM 0 TO Ens1.length DO
+            IF Ens2[g] = Ens1[m] THEN 
+                double := true;
+            END_IF
+        END_FOR
+        IF NOT double THEN 
+            sum := sum + Ens2[g];
+        END_IF
+    END_FOR
+
+    Write("La somme de tous les éléments distincts est : ", sum);
+END
